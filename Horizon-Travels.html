@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Travels | Premium Luxury Journeys</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- لوحة الألوان وإعدادات التصميم العالمية --- */
+        :root {
+            --primary: #c5a880;        /* ذهبي ملكي دافئ */
+            --primary-hover: #b39369;  /* ذهبي داكن عند التمرير */
+            --dark: #0b0c10;           /* أسود فاخر */
+            --dark-accent: #1f2833;    /* رمادي غامق جداً للمكونات */
+            --light-bg: #f4f6f9;       /* خلفية فاتحة ومريحة */
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* --- تصفير الإعدادات الافتراضية --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth; /* تمرير ناعم جداً عند التنقل بين الأقسام */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- شريط التنقل الذكي (Navbar) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        /* تأثير شريط التنقل عند النزول لأسفل الشاشة */
+        nav.scrolled {
+            padding: 15px 6%;
+            background: rgba(11, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- قسم الواجهة الترحيبية (Hero Section) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(11, 12, 16, 0.6), rgba(11, 12, 16, 0.4)), 
+                        url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-shadow: 2px 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            color: #eaeff2;
+            font-size: 1.3rem;
+            max-width: 750px;
+            margin-bottom: 45px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* تصميم الأزرار الفخمة */
+        .btn {
+            display: inline-block;
+            padding: 16px 45px;
+            background-color: var(--primary);
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* --- قسم المميزات والخدمات (Features Section) --- */
+        .features {
+            padding: 120px 8%;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-box {
+            padding: 50px 30px;
+            background: var(--light-bg);
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-12px);
+            background: var(--dark);
+            color: var(--white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-box i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .feature-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .feature-box:hover p {
+            color: #bdc3c7;
+        }
+
+        /* --- قسم كتالوج الوجهات (Destinations Section) --- */
+        .destinations {
+            padding: 120px 8%;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* كروت سياحية خارقة واحترافية */
+        .tour-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .tour-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .tour-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .tour-card:hover img {
+            transform: scale(1.12);
+        }
+
+        /* شارة السعر المميزة فوق الصورة */
+        .tour-price {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .tour-info {
+            padding: 35px;
+            text-align: left;
+        }
+
+        .tour-info h3 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .tour-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            height: 70px;
+            overflow: hidden;
+        }
+
+        .tour-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #edf2f7;
+            padding-top: 20px;
+        }
+
+        .tour-meta span {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .tour-meta i {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+
+        .tour-meta .stars {
+            color: #f1c40f;
+        }
+
+        /* --- قسم استمارة الحجز والتواصل (Booking Section) --- */
+        .booking {
+            padding: 120px 8%;
+            background: linear-gradient(rgba(11, 12, 16, 0.85), rgba(11, 12, 16, 0.85)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .booking .section-header h2 {
+            color: var(--white);
+        }
+
+        .booking-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 50px;
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 14px 20px;
+            background: rgba(11, 12, 16, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(197, 168, 128, 0.3);
+        }
+
+        .booking-form .btn {
+            grid-column: span 2;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .booking-form .btn:hover {
+            background-color: var(--white);
+            color: var(--dark);
+        }
+
+        /* --- قسم تذييل الصفحة الحالي (Footer) --- */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-container {
+            margin-bottom: 30px;
+        }
+
+        .social-container a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--white);
+            border-radius: 50%;
+            margin: 0 10px;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-container a:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            color: #888;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- تحسينات الشاشات والهواتف الذكية (Responsive) --- */
+        @media (max-width: 900px) {
+            .booking-form { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; flex-direction: column; gap: 20px; }
+            nav.scrolled { padding: 15px 20px; }
+            .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-header h2 { font-size: 2.2rem; }
+            .booking-form { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <a href="#" class="logo">Horizon<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#book">Book Now</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Unveil Elite Destinations</h1>
+        <p>Explore luxury, bespoke travel experiences handcrafted for passionate explorers. Journey into extraordinary worlds with comfort and style.</p>
+        <a href="#destinations" class="btn">Explore Journeys</a>
+    </header>
+
+    <section id="services" class="features">
+        <div class="section-header">
+            <h2>Why Choose Horizon</h2>
+            <p>We craft flawless travel memories wrapped in ultimate luxury and premium care.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h3>Handpicked Routes</h3>
+                <p>Impeccably curated itineraries designed by world-renowned travel experts.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-hotel"></i>
+                <h3>Luxury Stays</h3>
+                <p>Elite 5-star accommodations offering top-tier amenities and perfect scenery.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-headset"></i>
+                <h3>24/7 Concierge</h3>
+                <p>Your private concierge agent is always available anytime, anywhere worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinations" class="destinations">
+        <div class="section-header">
+            <h2>Breathtaking Destinations</h2>
+            <p>Uncover our most-requested ultra-luxury vacation packages for this season.</p>
+        </div>
+        
+        <div class="destinations-grid">
+            <div class="tour-card">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" alt="Maldives Resort">
+                    <span class="tour-price">$1,250 / night</span>
+                </div>
+                <div class="tour-info">
+                    <h3>Maldives Private Villas</h3>
+                    <p>Escape to crystal clear lagoons, stay in premium overwater bungalows, and indulge in world-class underwater dining experiences.</p>
+                    <div class="tour-meta">
+                        <span><i class="fa-regular fa-clock"></i> 7 Days / 6 Nights</span>
+                        <span class="stars"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80" alt="Paris France">
+                    <span class="tour-price">$890 / night</span>
+                </div>
+                <div class="tour-info">
+                    <h3>Parisian Romance & Art</h3>
+                    <p>Immerse yourself in deep art history, skip-the-line private museum tours, and exquisite luxury shopping sprees across the Champs-Élysées.</p>
+                    <div class="tour-meta">
+                        <span><i class="fa-regular fa-clock"></i> 5 Days / 4 Nights</span>
+                        <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=80" alt="Kyoto Japan">
+                    <span class="tour-price">$1,100 / night</span>
+                </div>
+                <div class="tour-info">
+                    <h3>Kyoto Imperial Heritage</h3>
+                    <p>Walk through magnificent bamboo forests, experience historic ancient tea rituals, and sleep soundly in luxury boutique Japanese Ryokans.</p>
+                    <div class="tour-meta">
+                        <span><i class="fa-regular fa-clock"></i> 6 Days / 5 Nights</span>
+                        <span class="stars"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="book" class="booking">
+        <div class="section-header">
+            <h2>Secure Your Private Jet</h2>
+            <p>Leave a message with your destination details and our travel expert will reply within 15 minutes.</p>
+        </div>
+
+        <form class="booking-form" onsubmit="event.preventDefault(); alert('Thank you for choosing Horizon Travels! Our representative will call you shortly.');">
+            <div class="form-group">
+                <label for="name">Your Full Name</label>
+                <input type="text" id="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Select Destination</label>
+                <select id="destination">
+                    <option value="maldives">Maldives Private Villas</option>
+                    <option value="paris">Parisian Romance</option>
+                    <option value="kyoto">Kyoto Imperial Heritage</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Departure Date</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group full-width">
+                <label for="notes">Special Requirements / Concierge Notes</label>
+                <textarea id="notes" rows="4" placeholder="Mention any extra preferences like private jets, food diets, or custom luxury tours..."></textarea>
+            </div>
+            <button type="submit" class="btn">Request Call Back</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-container">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <p>&copy; 2026 Horizon Travels. Designed & Coded by Marah Faisal Al Hamoud.</p>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
