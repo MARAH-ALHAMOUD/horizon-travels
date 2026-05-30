@@ -9,25 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- لوحة الألوان وإعدادات التصميم العالمية --- */
         :root {
-            --primary: #c5a880;        /* ذهبي ملكي دافئ */
-            --primary-hover: #b39369;  /* ذهبي داكن عند التمرير */
-            --dark: #0b0c10;           /* أسود فاخر */
-            --dark-accent: #1f2833;    /* رمادي غامق جداً للمكونات */
-            --light-bg: #f4f6f9;       /* خلفية فاتحة ومريحة */
+            --primary: #d4af37;        /* ذهبي مشرق وحيوي جداً */
+            --primary-hover: #b8972e;  
+            --dark: #0b0c10;           
+            --dark-accent: #1f2833;    
+            --light-bg: #f4f6f9;       
             --white: #ffffff;
             --text-dark: #2c3e50;
-            --text-muted: #7f8c8d;
+            --text-muted: #666666;
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* --- تصفير الإعدادات الافتراضية --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth; /* تمرير ناعم جداً عند التنقل بين الأقسام */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -42,7 +40,6 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- شريط التنقل الذكي (Navbar) --- */
         nav {
             position: fixed;
             top: 0;
@@ -56,7 +53,6 @@
             transition: var(--transition);
         }
 
-        /* تأثير شريط التنقل عند النزول لأسفل الشاشة */
         nav.scrolled {
             padding: 15px 6%;
             background: rgba(11, 12, 16, 0.95);
@@ -111,10 +107,9 @@
             color: var(--primary);
         }
 
-        /* --- قسم الواجهة الترحيبية (Hero Section) --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(11, 12, 16, 0.6), rgba(11, 12, 16, 0.4)), 
+            background: linear-gradient(rgba(11, 12, 16, 0.4), rgba(11, 12, 16, 0.3)), 
                         url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -130,19 +125,19 @@
             font-weight: 900;
             margin-bottom: 25px;
             letter-spacing: 2px;
-            text-shadow: 2px 4px 15px rgba(0,0,0,0.3);
+            text-shadow: 2px 4px 15px rgba(0,0,0,0.4);
         }
 
         .hero p {
-            color: #eaeff2;
+            color: #ffffff;
             font-size: 1.3rem;
             max-width: 750px;
             margin-bottom: 45px;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.5px;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
         }
 
-        /* تصميم الأزرار الفخمة */
         .btn {
             display: inline-block;
             padding: 16px 45px;
@@ -150,12 +145,13 @@
             color: var(--dark);
             text-decoration: none;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: var(--transition);
             border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .btn:hover {
@@ -166,11 +162,19 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- قسم المميزات والخدمات (Features Section) --- */
+        /* --- قسم الخدمات (الخلفية اللؤلؤية البيضاء المتحركة) --- */
         .features {
             padding: 120px 8%;
-            background-color: var(--white);
             text-align: center;
+            background: linear-gradient(-45deg, #ffffff, #fdfbf7, #f7f2ea, #ffffff);
+            background-size: 400% 400%;
+            animation: pearlGradient 12s ease infinite;
+        }
+
+        @keyframes pearlGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .section-header {
@@ -199,16 +203,17 @@
 
         .feature-box {
             padding: 50px 30px;
-            background: var(--light-bg);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.02);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .feature-box:hover {
             transform: translateY(-12px);
-            background: var(--dark);
-            color: var(--white);
+            background: var(--white);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
@@ -216,13 +221,23 @@
             font-size: 3.5rem;
             color: var(--primary);
             margin-bottom: 25px;
+            display: inline-block;
+            animation: floatIcon 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.5)); /* إشعاع ذهبي للأيقونات */
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
 
         .feature-box h3 {
             font-size: 1.4rem;
             margin-bottom: 15px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
+            color: var(--dark);
         }
 
         .feature-box p {
@@ -230,15 +245,60 @@
             color: var(--text-muted);
         }
 
-        .feature-box:hover p {
-            color: #bdc3c7;
-        }
-
-        /* --- قسم كتالوج الوجهات (Destinations Section) --- */
+        /* --- قسم الوجهات (البحر المشرق الواضح) --- */
         .destinations {
             padding: 120px 8%;
-            background-color: var(--light-bg);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            transition: transform 0.1s linear;
+            overflow: hidden;
+        }
+
+        /* صورة بحر استوائي زرقاء ومشرقة جداً */
+        .animated-ocean-bg {
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            animation: smoothZoom 25s infinite alternate linear; 
+        }
+
+        @keyframes smoothZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* طبقة شفافة بيضاء خفيفة جداً بدلاً من السوداء الكئيبة */
+        .destinations::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15); /* شفافية مشرقة */
+            z-index: -1;
+        }
+
+        /* تعديل ألوان العناوين لتبرز فوق البحر المشرق */
+        .destinations .section-header h2 {
+            color: var(--dark);
+            text-shadow: 0 2px 15px rgba(255, 255, 255, 0.9); /* توهج أبيض للقراءة بوضوح */
+        }
+        
+        .destinations .section-header p {
+            color: var(--dark-accent);
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
         }
 
         .destinations-grid {
@@ -247,18 +307,18 @@
             gap: 40px;
         }
 
-        /* كروت سياحية خارقة واحترافية */
         .tour-card {
             background: var(--white);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* ظل أقوى ليفصل الكارت عن البحر */
             transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
 
         .tour-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
 
         .img-wrapper {
@@ -279,7 +339,6 @@
             transform: scale(1.12);
         }
 
-        /* شارة السعر المميزة فوق الصورة */
         .tour-price {
             position: absolute;
             bottom: 20px;
@@ -288,7 +347,7 @@
             color: var(--primary);
             padding: 8px 20px;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -302,7 +361,7 @@
             font-size: 1.6rem;
             color: var(--dark);
             margin-bottom: 12px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .tour-info p {
@@ -322,9 +381,9 @@
         }
 
         .tour-meta span {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-dark);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .tour-meta i {
@@ -333,13 +392,13 @@
         }
 
         .tour-meta .stars {
-            color: #f1c40f;
+            color: #f59e0b; /* لون نجوم التقييم مشرق */
         }
 
-        /* --- قسم استمارة الحجز والتواصل (Booking Section) --- */
+        /* --- قسم الحجز --- */
         .booking {
             padding: 120px 8%;
-            background: linear-gradient(rgba(11, 12, 16, 0.85), rgba(11, 12, 16, 0.85)), 
+            background: linear-gradient(rgba(11, 12, 16, 0.8), rgba(11, 12, 16, 0.85)), 
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             color: var(--white);
             text-align: center;
@@ -374,8 +433,8 @@
         }
 
         .form-group label {
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--primary);
             letter-spacing: 0.5px;
         }
@@ -387,14 +446,14 @@
             border-radius: 10px;
             color: var(--white);
             font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: var(--transition);
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(197, 168, 128, 0.3);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
         }
 
         .booking-form .btn {
@@ -411,7 +470,7 @@
             color: var(--dark);
         }
 
-        /* --- قسم تذييل الصفحة الحالي (Footer) --- */
+        /* --- الفوتر --- */
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -429,13 +488,13 @@
             width: 50px;
             height: 50px;
             line-height: 50px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--white);
             border-radius: 50%;
             margin: 0 10px;
             font-size: 1.3rem;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-container a:hover {
@@ -450,7 +509,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- تحسينات الشاشات والهواتف الذكية (Responsive) --- */
         @media (max-width: 900px) {
             .booking-form { grid-template-columns: 1fr; }
             .form-group.full-width { grid-column: span 1; }
@@ -462,6 +520,7 @@
             .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
             .hero h1 { font-size: 3rem; }
             .hero p { font-size: 1.1rem; }
+            .destinations { padding: 80px 20px; }
             .section-header h2 { font-size: 2.2rem; }
             .booking-form { padding: 30px 20px; }
         }
@@ -510,6 +569,10 @@
     </section>
 
     <section id="destinations" class="destinations">
+        <div class="parallax-bg" id="parallax-target">
+            <div class="animated-ocean-bg"></div>
+        </div>
+
         <div class="section-header">
             <h2>Breathtaking Destinations</h2>
             <p>Uncover our most-requested ultra-luxury vacation packages for this season.</p>
@@ -609,12 +672,18 @@
 
     <script>
         const nav = document.getElementById('main-nav');
+        const parallaxTarget = document.getElementById('parallax-target');
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 80) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
+
+            let scrolled = window.pageYOffset;
+            let val = scrolled * 0.15;
+            parallaxTarget.style.transform = `translateY(${val}px)`;
         });
     </script>
 </body>
