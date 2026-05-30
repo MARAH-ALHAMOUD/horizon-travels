@@ -10,7 +10,7 @@
 
     <style>
         :root {
-            --primary: #d4af37;        /* ذهبي مشرق وحيوي جداً */
+            --primary: #d4af37;        
             --primary-hover: #b8972e;  
             --dark: #0b0c10;           
             --dark-accent: #1f2833;    
@@ -162,7 +162,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- قسم الخدمات (الخلفية اللؤلؤية البيضاء المتحركة) --- */
+        /* --- قسم الخدمات --- */
         .features {
             padding: 120px 8%;
             text-align: center;
@@ -223,7 +223,7 @@
             margin-bottom: 25px;
             display: inline-block;
             animation: floatIcon 3s ease-in-out infinite;
-            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.5)); /* إشعاع ذهبي للأيقونات */
+            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.5));
         }
 
         @keyframes floatIcon {
@@ -245,12 +245,13 @@
             color: var(--text-muted);
         }
 
-        /* --- قسم الوجهات (البحر المشرق الواضح) --- */
+        /* --- قسم الوجهات (السر هنا: إضافة z-index: 1) --- */
         .destinations {
             padding: 120px 8%;
             text-align: center;
             position: relative;
             overflow: hidden;
+            z-index: 1; /* هذا هو السطر السحري الذي سيظهر البحر */
         }
 
         .parallax-bg {
@@ -264,7 +265,6 @@
             overflow: hidden;
         }
 
-        /* صورة بحر استوائي زرقاء ومشرقة جداً */
         .animated-ocean-bg {
             width: 100%;
             height: 100%;
@@ -277,7 +277,6 @@
             100% { transform: scale(1.15); }
         }
 
-        /* طبقة شفافة بيضاء خفيفة جداً بدلاً من السوداء الكئيبة */
         .destinations::before {
             content: '';
             position: absolute;
@@ -285,14 +284,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.15); /* شفافية مشرقة */
+            background: rgba(255, 255, 255, 0.15);
             z-index: -1;
         }
 
-        /* تعديل ألوان العناوين لتبرز فوق البحر المشرق */
         .destinations .section-header h2 {
             color: var(--dark);
-            text-shadow: 0 2px 15px rgba(255, 255, 255, 0.9); /* توهج أبيض للقراءة بوضوح */
+            text-shadow: 0 2px 15px rgba(255, 255, 255, 0.9);
         }
         
         .destinations .section-header p {
@@ -311,7 +309,7 @@
             background: var(--white);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* ظل أقوى ليفصل الكارت عن البحر */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             transition: var(--transition);
             border: 2px solid rgba(255, 255, 255, 0.5);
         }
@@ -392,7 +390,7 @@
         }
 
         .tour-meta .stars {
-            color: #f59e0b; /* لون نجوم التقييم مشرق */
+            color: #f59e0b;
         }
 
         /* --- قسم الحجز --- */
